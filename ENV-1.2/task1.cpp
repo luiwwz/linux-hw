@@ -1,29 +1,41 @@
 #include <iostream>
+#include <string>
+#include <cctype>
 #include <stdexcept>
 
 using namespace std;
 
+bool isNumber(const string& s, int& num) {
+    if (s.empty()) return false;
+
+    for (char c : s) {
+        if (!isdigit(c)) return false;
+    }
+
+    try {
+        num = stoi(s);
+    } catch (const out_of_range&) {
+        return false;
+    }
+
+    return true;
+}
+
 int main(int argc, char* argv[]) {
     if (argc != 4) {
-        cout << "Usage: " << argv[0] << " num1 num2 num3" << endl;
+        cout << "Usage: " << argv[0] << " num1, num2, num3"  << endl;
         return 1;
     }
 
     int a, b, c;
 
-    try {
-        a = stoi(argv[1]);
-        b = stoi(argv[2]);
-        c = stoi(argv[3]);
-    } catch (const invalid_argument& e) {
-        cout << "Error: One of the inputs is not a valid integer." << endl;
-        return 1;
-    } catch (const out_of_range& e) {
-        cout << "Error: One of the inputs is out of the valid integer range." << endl;
+    if (!isNumber(argv[1], a) || !isNumber(argv[2], b) || !isNumber(argv[3], c)) {
+        cout << "Error: all arguments must be valid integers within range!" << endl;
         return 1;
     }
 
-    int max = a, min = a;
+    int min = a;
+    int max = a;
 
     if (b > max) max = b;
     if (c > max) max = c;
@@ -32,6 +44,4 @@ int main(int argc, char* argv[]) {
     if (c < min) min = c;
 
     cout << "min-" << min << ", max-" << max << endl;
-
-    return 0;
 }
