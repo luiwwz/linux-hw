@@ -12,7 +12,7 @@ int main() {
 	  Complex(2, 0)
 	};
 
-	std::cout << "Befor sorting: " << std::endl;
+	std::cout << "Before sorting: " << std::endl;
 	for(const auto& c : numbers) {
            std::cout << c << "abs:  " << c.abs() << " ";
 	}
