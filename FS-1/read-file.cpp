@@ -1,17 +1,18 @@
 #include <fcntl.h>
 #include <unistd.h>
+#include <string.h> 
 
 int main(int argc, char** argv) {
     if (argc != 2) {
         const char* msg = "Usage: ./read-file <file_name>\n";
-        write(STDERR_FILENO, msg, 33);
+        write(STDERR_FILENO, msg, strlen(msg)); 
         return 1;
     }
 
     int fd = open(argv[1], O_RDONLY);
     if (fd < 0) {
         const char* msg = "Error: failed to open file\n";
-        write(STDERR_FILENO, msg, 28);
+        write(STDERR_FILENO, msg, strlen(msg)); 
         return 1;
     }
 
