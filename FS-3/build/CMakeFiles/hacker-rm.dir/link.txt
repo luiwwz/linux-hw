@@ -1,0 +1,1 @@
+/usr/bin/c++ "CMakeFiles/hacker-rm.dir/hacker-rm.cpp.o" -o hacker-rm 
