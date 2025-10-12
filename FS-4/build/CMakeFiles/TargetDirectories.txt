@@ -1,0 +1,3 @@
+/home/luiwz/linux-hw/FS-4/build/CMakeFiles/redirect.dir
+/home/luiwz/linux-hw/FS-4/build/CMakeFiles/edit_cache.dir
+/home/luiwz/linux-hw/FS-4/build/CMakeFiles/rebuild_cache.dir
