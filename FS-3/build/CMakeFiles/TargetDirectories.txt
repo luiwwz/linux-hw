@@ -1,3 +1,0 @@
-/home/luiwz/linux-hw/FS-3/build/CMakeFiles/hacker-rm.dir
-/home/luiwz/linux-hw/FS-3/build/CMakeFiles/edit_cache.dir
-/home/luiwz/linux-hw/FS-3/build/CMakeFiles/rebuild_cache.dir

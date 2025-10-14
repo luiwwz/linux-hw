@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/redirect.dir/redirect.cpp.o -o redirect 
