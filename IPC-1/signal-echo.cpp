@@ -36,6 +36,11 @@ int main() {
 
     sigaction(SIGUSR1, &sa, nullptr);
 
+    if (sigaction(SIGUSR1, &sa, nullptr) == -1) {
+    std::cerr << "sigaction failed\n";
+    return 1;
+    }
+
     while (true) {
         sleep(10);
     }
