@@ -80,7 +80,22 @@ int main() {
 	        break;
 	    }
 
-            int m = std::stoi(input);
+            int m;
+	    size_t pos;
+            try {
+                m = std::stoi(input, &pos);
+	    	if (pos != input.length()) {
+                    throw std::invalid_argument("Extra characters after number");
+                }
+
+                if (m <= 0) {
+                   throw std::invalid_argument("Number must be positive");
+                }
+
+          } catch (const std::exception& e) {
+                   std::cerr << "Invalid input: " << e.what() << ". Please try again.\n";
+                   continue;
+                }
 
             std::cout << "[Parent] Sending " << m << " to child process...\n";
             if (write(pipe_to_child[1], &m, sizeof(m)) != sizeof(m)) {
