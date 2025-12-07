@@ -34,7 +34,10 @@ int main() {
     sa.sa_sigaction = handler;
     sa.sa_flags = SA_SIGINFO;
 
-    sigaction(SIGUSR1, &sa, nullptr);
+    if (sigaction(SIGUSR1, &sa, nullptr) == -1) {
+        std::cerr << "sigaction failed\n";
+        return 1;
+    }
 
     while (true) {
         sleep(10);
