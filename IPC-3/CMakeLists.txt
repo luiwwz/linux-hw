@@ -9,6 +9,7 @@ set(SHARED_SRC shared_array.cpp)
 
 add_executable(first first.cpp ${SHARED_SRC})
 add_executable(second second.cpp ${SHARED_SRC})
+add_executable(cleanup clean.cpp ${SHARED_SRC})
 
 set_directory_properties(PROPERTIES ADDITIONAL_MAKE_CLEAN_FILES "first;second")
 

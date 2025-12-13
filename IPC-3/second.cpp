@@ -5,15 +5,26 @@
 #include <unistd.h>
 
 int main() {
-   shared_array arr("/myarray", 10);
-   sem_t* sem = sem_open("/mysem", O_CREAT, 0666, 1);
+    try {
+        shared_array arr("/myarray", 10);
+        sem_t* sem = sem_open("/mysem", O_CREAT, 0666, 1);
+        if (sem == SEM_FAILED) {
+            std::cerr << "Failed to open semaphore\n";
+            return 1;
+        }
 
-   while (true) {
-      sem_wait(sem);
-      arr[0] += 2;
-      std::cout << "second: " << arr[0] << '\n';
-      sem_post(sem);
-      sleep(1);
-   }
+        while (true) {
+            sem_wait(sem);
+            arr[0] += 2;
+            std::cout << "second: " << arr[0] << '\n';
+            sem_post(sem);
+            sleep(1);
+        }
+
+        sem_close(sem);
+    } catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << '\n';
+    }
+
+    return 0;
 }
-
