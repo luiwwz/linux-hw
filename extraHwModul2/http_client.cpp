@@ -39,7 +39,12 @@ int main() {
 	   "\r\n";
 
 	   	
-   send(sock, request, strlen(request), 0);
+   int sd = send(sock, request, strlen(request), 0);
+   if (sd < 0) {
+       std::cerr << "failed to send\n";
+       exit(1);
+   }
+
    int fd = open("httpforevor.html", O_WRONLY | O_CREAT | O_TRUNC, 0644);
    if (fd  < 0) {
        std::cerr << "faiiled to open\n";
@@ -49,8 +54,12 @@ int main() {
    char buffer[4096];
    int bytes;
 
-   while((bytes = recv(sock, buffer, sizeof(buffer), 0)) > 0) {
-        write(fd, buffer, bytes);
+   while((bytes = recv(sock, buffer, sizeof(buffer), 0)) > 0) {   
+        int wr = write(fd, buffer, bytes);
+	if (wr < 0) {
+	    std::cerr << "failed to write\n";
+	    exit(1);
+	}
     }
 
    close(fd);
